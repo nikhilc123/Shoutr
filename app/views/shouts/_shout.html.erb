@@ -1,5 +1,16 @@
 <div>
-  <%= shout.user.username %>
-  <%= time_ago_in_words(shout.created_at) %> ago
+<!--  shout.user.username #against the law of demeter, talking to user model and then its attribute -->
+<!--  Refactored using delegate, check the model-->
+<!--  shout belongs to user, pass that record as a path (show action), check the link_to syntax-->
+<%#= link_to "Profile", user_path(@user) %>
+<!--  # => <a href="/users/1">Profile</a>-->
+  <!--  OR-->
+  <%#= link_to "Profile", @user %>
+<!--  # => <a href="/users/1">Profile</a>-->
+
+  <%= link_to shout.username, shout.user %>
   <%= shout.body %>
+  <%= link_to shout do %>
+    <%= time_ago_in_words(shout.created_at) %> ago
+  <% end %>
 </div>
