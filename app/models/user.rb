@@ -9,8 +9,24 @@ class User < ApplicationRecord
   # "You are renaming the shouts association to liked_shouts. If you don't provide the :source,
   # Rails will look for an association called liked_shout in the Like class."
   has_many :liked_shouts, through: :likes, source: :shout
+  #foreign_key: Following Relationship currently has 2 ids, follower_id, followed_user_id but NO user_id
+  # so use follower_id and we do not need user_id ie. follower_id == user id
+  has_many :following_relationships, foreign_key: 'follower_id'
+  has_many :followed_users, through: :following_relationships
 
   validates :username, presence: true, uniqueness: true
+
+  def follow(user)
+    followed_users << user
+  end
+
+  def unfollow(user)
+    followed_users.destroy(user)
+  end
+
+  def following?(user)
+    followed_user_ids.include?(user.id)
+  end
 
   def like(shout)
     #fill the array with records
@@ -29,4 +45,5 @@ class User < ApplicationRecord
   def to_param
     username
   end
+
 end
