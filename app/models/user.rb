@@ -11,8 +11,12 @@ class User < ApplicationRecord
   has_many :liked_shouts, through: :likes, source: :shout
   #foreign_key: Following Relationship currently has 2 ids, follower_id, followed_user_id but NO user_id
   # so use follower_id and we do not need user_id ie. follower_id == user id
-  has_many :following_relationships, foreign_key: 'follower_id'
+  has_many :following_relationships, foreign_key: :follower_id
   has_many :followed_users, through: :following_relationships
+
+  #foreign_key : overrides the curent id on that association
+  has_many :follower_relationships, foreign_key: :followed_user_id, class_name: 'FollowingRelationship'
+  has_many :followers, through: :follower_relationships
 
   validates :username, presence: true, uniqueness: true
 
@@ -40,6 +44,11 @@ class User < ApplicationRecord
   def liked?(shout)
     #liked_shout_ids - Rails smart to tell you based on association
     liked_shout_ids.include?(shout.id)
+  end
+
+  def timeline_shouts
+    #get all shouts of followed_user(s) and current_user, scope handles desc order - shout.rb
+    Shout.where(user_id: followed_user_ids + [id])
   end
 
   def to_param
