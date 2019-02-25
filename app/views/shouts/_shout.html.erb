@@ -9,7 +9,8 @@
 <!--  # => <a href="/users/1">Profile</a>-->
 
   <%= link_to shout.username, shout.user %>
-  <%= shout.body %>
+<!--  belongs_to content: check the polymorphic migration-->
+  <%= shout.content.body %>
   <%= link_to shout do %>
     <%= time_ago_in_words(shout.created_at) %> ago
   <% end %>
