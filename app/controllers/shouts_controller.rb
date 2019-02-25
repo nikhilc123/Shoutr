@@ -1,7 +1,7 @@
 class ShoutsController < ApplicationController
 
   def show
-    #when you click on link_to inside _shout.html.erb (a record is being sent)
+    #when you click on link_to inside _text_shout.html.erb (a record is being sent)
     @shouts = Shout.find(params[:id])
   end
 
@@ -18,12 +18,20 @@ class ShoutsController < ApplicationController
   end
 
   def content_from_params
-    TextShout.new(content_params)
+    case params[:shout][:content_type]
+      when "TextShout" then TextShout.new(text_shout_content_params)
+      when "PhotoShout" then PhotoShout.new(photo_shout_content_params)
+    end
   end
 
-  def content_params
+  def text_shout_content_params
     #polymophic = hout.content should give textshout or image shout
     params.require(:shout).require(:content).permit(:body)
+  end
+
+  def photo_shout_content_params
+    #polymophic=hout.content should give textshout or image shout
+    params.require(:shout).require(:content).permit(:image)
   end
 
   def redirect_options_for(shout)

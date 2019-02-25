@@ -10,7 +10,7 @@
 
   <%= link_to shout.username, shout.user %>
 <!--  belongs_to content: check the polymorphic migration-->
-  <%= shout.content.body %>
+  <%= render shout.content %>
   <%= link_to shout do %>
     <%= time_ago_in_words(shout.created_at) %> ago
   <% end %>

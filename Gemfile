@@ -17,6 +17,7 @@ gem 'jbuilder', '~> 2.5'
 #App engine to setup authentication.
 # Has its own directory - modules, controllers, views
 gem 'clearance'
+gem 'paperclip'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
