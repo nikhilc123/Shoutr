@@ -1,13 +1,14 @@
 <div>
-<!--  shout.user.username #against the law of demeter, talking to user model and then its attribute -->
-<!--  Refactored using delegate, check the model-->
-<!--  shout belongs to user, pass that record as a path (show action), check the link_to syntax-->
-<%#= link_to "Profile", user_path(@user) %>
-<!--  # => <a href="/users/1">Profile</a>-->
+  <%= avatar(shout.user) %>
+
+  <!--  shout.user.username #against the law of demeter, talking to user model and then its attribute -->
+  <!--  Refactored using delegate, check the model-->
+  <!--  shout belongs to user, pass that record as a path (show action), check the link_to syntax-->
+  <%#= link_to "Profile", user_path(@user) %>
+  <!--  # => <a href="/users/1">Profile</a>-->
   <!--  OR-->
   <%#= link_to "Profile", @user %>
-<!--  # => <a href="/users/1">Profile</a>-->
-
+  <!--  # => <a href="/users/1">Profile</a>-->
   <%= link_to shout.username, shout.user %>
 <!--  belongs_to content: check the polymorphic migration-->
   <%= render shout.content %>
