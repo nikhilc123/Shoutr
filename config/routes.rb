@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'like/create'
+
   constraints Clearance::Constraints::SignedIn.new do
     root to: "dashboard#show"
   end
@@ -6,7 +8,12 @@ Rails.application.routes.draw do
   root to: 'home#show'
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, only: [:create]
-  resources :shouts, only: [:create, :show]
+  resources :shouts, only: [:create, :show] do
+    member do
+      post :like, to: 'likes#create'
+      delete :unlike, to: 'likes#destroy'
+    end
+  end
 
   resources :users, only: [:create, :show] do
     resource :password,
