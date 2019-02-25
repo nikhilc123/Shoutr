@@ -8,7 +8,7 @@ class CreateLikes < ActiveRecord::Migration[5.1]
       t.timestamps
     end
     #user should not like the same shout more than once
-    # that is why unique
+    # that is why unique combination/pair
     add_index :likes, [:user_id, :shout_id], unique: true
   end
 end

@@ -2,7 +2,7 @@ class User < ApplicationRecord
   include Clearance::User
   has_many :shouts, dependent: :destroy
   has_many :likes
-  # user likes many shouts
+  # user likes many shouts AND there is no need to create LikeShout model so use source
   # source: :shots because, Likes table will have
   # user_id: <x> like_id: <x>
   #Why source?
@@ -13,6 +13,7 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true
 
   def like(shout)
+    #fill the array with records
     liked_shouts << shout
   end
 
