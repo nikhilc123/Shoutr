@@ -25,4 +25,8 @@ class User < ApplicationRecord
     #liked_shout_ids - Rails smart to tell you based on association
     liked_shout_ids.include?(shout.id)
   end
+
+  def to_param
+    username
+  end
 end
