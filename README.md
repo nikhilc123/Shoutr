@@ -1,1 +1,5 @@
-We'll be building our own Twitter-like service called "Shoutr" where we'll create "Shouts" instead of "Tweets." In order to get started, we'll first need to focus on generating a rails application and setting up authentication. We'll be using the gem "Clearance" for authentication, but we'll need to do some custom configuration in order to get it to work the way we want
+Built our own Twitter-like service called "Shoutr" where I created "Shouts" instead of "Tweets." 
+This application primararily focuses on the backend structure and not front end
+So, feel free to checkout the organization, refactorization and have added comments to understand much better and shout.. :)
+
+#Will work on the front end changes soon!
