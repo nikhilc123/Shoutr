@@ -6,7 +6,13 @@ class UsersController < Clearance::UsersController
 
   def show
     @user = User.find_by(username: params[:id])
-    @shouts = @user.shouts
+    # before
+    # @shouts = @user.shouts
+    # after
+    # 1.dashboard page should give user and its followed user shouts
+    # 2.user page should give that user's shouts
+    # 1 + 2 = this commit
+    @timeline = Timeline.new([@user])
   end
 
   private

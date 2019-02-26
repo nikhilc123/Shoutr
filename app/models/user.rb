@@ -46,11 +46,6 @@ class User < ApplicationRecord
     liked_shout_ids.include?(shout.id)
   end
 
-  def timeline_shouts
-    #get all shouts of followed_user(s) and current_user, scope handles desc order - shout.rb
-    Shout.where(user_id: followed_user_ids + [id])
-  end
-
   def to_param
     username
   end
