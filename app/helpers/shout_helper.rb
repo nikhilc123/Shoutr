@@ -11,4 +11,14 @@ module ShoutHelper
   def autolink(text)
     text.gsub(/@\w+/) { |mention| link_to mention, user_path(mention[1..-1]) }.html_safe
   end
+
+  def shout_form_for(content_type)
+    # @shout with Shout.new because we are not showing previous shouts if there are any errors
+    # add polymorphic association via content_type, get the TextShout or PhotoShout
+    form_for(Shout.new, url: content_type.new) do |form|
+      form.hidden_field(:content_type, value: content_type) +
+      form.fields_for(:content) { |content_form| yield(content_form) } +
+      form.submit("Shout!")
+    end
+  end
 end
