@@ -1,11 +1,6 @@
 <h1>Dashboard</h1>
 
-<%= shout_form_for(TextShout) do |form| %>
-  <%= form.text_field :body, placeholder: "Shout with a text..", required: true %>
-<% end %>
-
-<%= shout_form_for(PhotoShout) do |form| %>
-  <%= form.file_field :image, required: true %>
-<% end %>
+<%= render "shouts/text_shout_form" %>
+<%= render "shouts/photo_shout_form" %>
 
 <%= render @shouts %>

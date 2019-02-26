@@ -16,7 +16,6 @@ module ShoutHelper
     # @shout with Shout.new because we are not showing previous shouts if there are any errors
     # add polymorphic association via content_type, get the TextShout or PhotoShout
     form_for(Shout.new, url: content_type.new) do |form|
-      form.hidden_field(:content_type, value: content_type) +
       form.fields_for(:content) { |content_form| yield(content_form) } +
       form.submit("Shout!")
     end

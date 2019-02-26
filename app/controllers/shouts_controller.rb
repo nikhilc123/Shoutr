@@ -18,6 +18,7 @@ class ShoutsController < ApplicationController
   end
 
   def content_from_params
+    #content_type get from routes
     params[:content_type].new(content_params)
   end
 
