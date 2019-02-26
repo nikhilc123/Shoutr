@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     root to: "dashboard#show"
   end
 
+  resource 'search', only: [:show]
+
   root to: 'home#show'
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, only: [:create]
