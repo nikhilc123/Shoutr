@@ -8,15 +8,19 @@ Rails.application.routes.draw do
   root to: 'home#show'
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, only: [:create]
+
   #'text_shouts' or :text_shouts is same, pass the content_type to controller
   post :text_shouts, to: 'shouts#create', defaults: { content_type: TextShout }
   post :photo_shouts, to: 'shouts#create', defaults: { content_type: PhotoShout }
+
   resources :shouts, only: [:show] do
     member do
       post :like, to: 'likes#create'
       delete :unlike, to: 'likes#destroy'
     end
   end
+
+  resources :hashtags, only: [:show]
 
   resources :users, only: [:create, :show] do
     resources :followers, only: [:index]
