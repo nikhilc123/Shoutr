@@ -18,8 +18,10 @@ gem 'jbuilder', '~> 2.5'
 # Has its own directory - modules, controllers, views
 gem 'clearance'
 gem 'paperclip'
+gem 'sunspot_rails'
 
 group :development, :test do
+  gem 'sunspot_solr'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry-rails'
 end

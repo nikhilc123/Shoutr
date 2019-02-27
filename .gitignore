@@ -19,3 +19,6 @@
 .byebug_history
 
 public/system
+config/database.yml
+solr/
+config/sunspot.yml
